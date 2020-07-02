@@ -8,8 +8,6 @@ import reducers from './reducers';
 ReactDOM.render(
     <Provider store={createStore(reducers)}>
         <App />
-    </Provider>, 
+    </Provider>,
     document.getElementById('root')
 );
-
-

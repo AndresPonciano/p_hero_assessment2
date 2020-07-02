@@ -6,24 +6,21 @@ import { setDate } from '../actions';
 import DisplayImage from './DisplayImage';
 
 function App(props) {
+    function handleChange(date) {
+        props.setDate(date);
+    }
 
-  function handleChange (date) {
-    props.setDate(date);
-  }
-  
-  return (
-    <>
-      <DatePicker onChange={handleChange}/>
-      {props.date.toString()}
-      <DisplayImage/>
-    </>
-  );
+    return (
+        <>
+            <DatePicker onChange={handleChange} maxDate={new Date()} />
+            {props.date.toString()}
+            <DisplayImage />
+        </>
+    );
 }
 
 const mapStateToProps = (state) => {
-  return { date: state.date.date };
-}
+    return { date: state.date.date };
+};
 
-export default connect(
-    mapStateToProps, { setDate } 
-)(App);
+export default connect(mapStateToProps, { setDate })(App);
