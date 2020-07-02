@@ -13,3 +13,10 @@ export const setPrevDate = (yesterday) => {
         payload: yesterday
     };
 }
+
+export const setNextDate = (tomorrow) => {
+    return {
+        type: SETNEXT_DATE,
+        payload: tomorrow
+    }; 
+}
