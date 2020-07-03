@@ -39,11 +39,8 @@ const DisplayImage = (props) => {
             )
             .then((response) => {
                 setPicture(response.data);
-                console.log('please dont repeat');
             });
     }, [props.date]);
-
-    console.log(picture);
 
     // CHECK IF JULY 1ST HAS valid picture
     return (
