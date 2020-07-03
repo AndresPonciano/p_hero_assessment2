@@ -27,13 +27,9 @@ const DisplayImage = (props) => {
     const month = (props.date.getMonth() + 1).toString().padStart(2, '0');
     const day = props.date.getDate().toString().padStart(2, '0');
 
-    console.log('year', year, typeof year);
-    console.log('month', month, typeof month);
-    console.log('day', day, typeof day);
+    const [picture, setPicture] = useState({});
 
-    // const [picture, setPicture] = useState({});
-
-    // const NASA_KEY = process.env.REACT_APP_NASA_API_KEY;
+    const NASA_KEY = process.env.REACT_APP_NASA_API_KEY;
 
     // useEffect(() => {
     //     axios
@@ -46,13 +42,11 @@ const DisplayImage = (props) => {
     //         });
     // }, [props.date]);
 
-    // console.log(picture);
-
+    // CHECK IF JULY 1ST HAS valid picture
     return (
         <>
-            <h1>hello</h1>
-            {props.date.toString()}
             <button onClick={prevDate}>prev</button>
+            {/* <img src={picture.url} /> */}
             <button onClick={nextDate}>next</button>
         </>
     );

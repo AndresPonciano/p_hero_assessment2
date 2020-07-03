@@ -4,6 +4,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 import { connect } from 'react-redux';
 import { setDate } from '../actions';
 import DisplayImage from './DisplayImage';
+import Navbar from './Navbar';
 
 function App(props) {
     function handleChange(date) {
@@ -12,6 +13,7 @@ function App(props) {
 
     return (
         <>
+            <Navbar />
             <DatePicker onChange={handleChange} maxDate={new Date()} />
             {props.date.toString()}
             <DisplayImage />
