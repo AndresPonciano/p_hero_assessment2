@@ -1,14 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Navbar from './Navbar';
-import { deleteFavorite } from '../actions';
+import { deleteFavorite, deleteAll } from '../actions';
 
 const FavoriteList = (props) => {
-    const deleteSomething = (pictureData) => {
-        console.log('wat', pictureData);
-
-        // props.deleteFavorite(pictureData);
-    };
+    function clickDeleteAll() {
+        props.deleteAll();
+    }
 
     function renderFavs(pictureData) {
         return (
@@ -31,6 +29,7 @@ const FavoriteList = (props) => {
         <>
             <Navbar />
             <h1>hi</h1>
+            <button onClick={clickDeleteAll}>Delete All</button>
             {props.favorites.map(renderFavs)}
         </>
     );
@@ -40,4 +39,6 @@ const mapStateToProps = (state) => {
     return { favorites: state.favorites.favorites };
 };
 
-export default connect(mapStateToProps, { deleteFavorite })(FavoriteList);
+export default connect(mapStateToProps, { deleteFavorite, deleteAll })(
+    FavoriteList
+);

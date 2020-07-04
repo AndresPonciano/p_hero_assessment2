@@ -4,6 +4,7 @@ import {
     SETNEXT_DATE,
     SAVE_FAVORITE,
     DELETE_FAVORITE,
+    DELETE_ALL,
 } from './types';
 
 export const setDate = (date) => {
@@ -38,5 +39,11 @@ export const deleteFavorite = (picture) => {
     return {
         type: DELETE_FAVORITE,
         payload: picture,
+    };
+};
+
+export const deleteAll = () => {
+    return {
+        type: DELETE_ALL,
     };
 };
