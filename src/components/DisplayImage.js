@@ -28,23 +28,25 @@ const DisplayImage = (props) => {
 
     console.log('DATE IS', props.date);
 
-    // const year = props.date.getFullYear().toString();
-    // const month = (props.date.getMonth() + 1).toString().padStart(2, '0');
-    // const day = props.date.getDate().toString().padStart(2, '0');
+    const tempDate = new Date(props.date);
 
-    // const [picture, setPicture] = useState({});
+    const year = tempDate.getFullYear().toString();
+    const month = (tempDate.getMonth() + 1).toString().padStart(2, '0');
+    const day = tempDate.getDate().toString().padStart(2, '0');
 
-    // const NASA_KEY = process.env.REACT_APP_NASA_API_KEY;
+    const [picture, setPicture] = useState({});
 
-    // useEffect(() => {
-    //     axios
-    //         .get(
-    //             `https://api.nasa.gov/planetary/apod?api_key=${NASA_KEY}&date=${year}-${month}-${day}`
-    //         )
-    //         .then((response) => {
-    //             setPicture(response.data);
-    //         });
-    // }, [props.date]);
+    const NASA_KEY = process.env.REACT_APP_NASA_API_KEY;
+
+    useEffect(() => {
+        axios
+            .get(
+                `https://api.nasa.gov/planetary/apod?api_key=${NASA_KEY}&date=${year}-${month}-${day}`
+            )
+            .then((response) => {
+                setPicture(response.data);
+            });
+    }, [props.date]);
 
     // CHECK IF JULY 1ST HAS valid picture
     return (
@@ -55,19 +57,19 @@ const DisplayImage = (props) => {
                     prev
                 </button>
                 <img
-                    src={
-                        'https://upload.wikimedia.org/wikipedia/commons/f/f9/Phoenicopterus_ruber_in_S%C3%A3o_Paulo_Zoo.jpg'
-                    }
-                    // src={picture.url}
+                    // src={
+                    //     'https://upload.wikimedia.org/wikipedia/commons/f/f9/Phoenicopterus_ruber_in_S%C3%A3o_Paulo_Zoo.jpg'
+                    // }
+                    src={picture.url}
                     alt="nasa's of the day"
                 />
                 <button className="btn-right" onClick={nextDate}>
                     next
                 </button>
             </div>
-            {/* <Favorite picture={picture} /> */}
-            {/* <h2>{picture.title}</h2> */}
-            {/* <p>{picture.explanation}</p> */}
+            <Favorite picture={picture} />
+            <h2>{picture.title}</h2>
+            <p>{picture.explanation}</p>
         </>
     );
 };
