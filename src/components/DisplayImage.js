@@ -8,60 +8,66 @@ import Favorite from './Favorite';
 const DisplayImage = (props) => {
     function prevDate() {
         const yesterday = new Date(props.date);
-        yesterday.setDate(props.date.getDate() - 1);
-        props.setPrevDate(yesterday);
+        yesterday.setDate(yesterday.getDate() - 1);
+        props.setPrevDate(yesterday.toString());
     }
 
     function nextDate() {
         const today = new Date();
 
         const tomorrow = new Date(props.date);
-        tomorrow.setDate(props.date.getDate() + 1);
+        console.log(typeof tomorrow, tomorrow);
+        tomorrow.setDate(tomorrow.getDate() + 1);
+        console.log(typeof tomorrow, tomorrow);
 
         //making sure we don't fetch a date after current date
         if (today.getTime() > tomorrow.getTime()) {
-            props.setNextDate(tomorrow);
+            props.setNextDate(tomorrow.toString());
         }
     }
 
-    const year = props.date.getFullYear().toString();
-    const month = (props.date.getMonth() + 1).toString().padStart(2, '0');
-    const day = props.date.getDate().toString().padStart(2, '0');
+    console.log('DATE IS', props.date);
 
-    const [picture, setPicture] = useState({});
+    // const year = props.date.getFullYear().toString();
+    // const month = (props.date.getMonth() + 1).toString().padStart(2, '0');
+    // const day = props.date.getDate().toString().padStart(2, '0');
 
-    const NASA_KEY = process.env.REACT_APP_NASA_API_KEY;
+    // const [picture, setPicture] = useState({});
 
-    useEffect(() => {
-        axios
-            .get(
-                `https://api.nasa.gov/planetary/apod?api_key=${NASA_KEY}&date=${year}-${month}-${day}`
-            )
-            .then((response) => {
-                setPicture(response.data);
-            });
-    }, [props.date]);
+    // const NASA_KEY = process.env.REACT_APP_NASA_API_KEY;
+
+    // useEffect(() => {
+    //     axios
+    //         .get(
+    //             `https://api.nasa.gov/planetary/apod?api_key=${NASA_KEY}&date=${year}-${month}-${day}`
+    //         )
+    //         .then((response) => {
+    //             setPicture(response.data);
+    //         });
+    // }, [props.date]);
 
     // CHECK IF JULY 1ST HAS valid picture
     return (
         <>
-            <h1>{props.date.toLocaleDateString()}</h1>
+            <h1>{props.date}</h1>
             <div className="container">
                 <button className="btn-left" onClick={prevDate}>
                     prev
                 </button>
                 <img
-                    src={picture.url}
-                    // src="https://apod.nasa.gov/apod/image/2007/ldn1251_jerahian1024.jpg"
+                    src={
+                        'https://upload.wikimedia.org/wikipedia/commons/f/f9/Phoenicopterus_ruber_in_S%C3%A3o_Paulo_Zoo.jpg'
+                    }
+                    // src={picture.url}
                     alt="nasa's of the day"
                 />
                 <button className="btn-right" onClick={nextDate}>
                     next
                 </button>
             </div>
-            <Favorite picture={picture} />
-            <h2>{picture.title}</h2>
-            <p>{picture.explanation}</p>
+            {/* <Favorite picture={picture} /> */}
+            {/* <h2>{picture.title}</h2> */}
+            {/* <p>{picture.explanation}</p> */}
         </>
     );
 };

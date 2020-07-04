@@ -1,7 +1,7 @@
 import { SET_DATE, SETPREV_DATE, SETNEXT_DATE } from '../actions/types';
 
 const INITIAL_SATE = {
-    date: new Date(),
+    date: new Date().toString(),
 };
 
 export default (state = INITIAL_SATE, action) => {

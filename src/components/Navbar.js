@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 
 const Navbar = (props) => {
     function handleChange(date) {
-        props.setDate(date);
+        props.setDate(date.toString());
     }
 
     return (

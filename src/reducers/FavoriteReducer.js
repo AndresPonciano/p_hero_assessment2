@@ -7,6 +7,8 @@ const INITIAL_SATE = {
 export default (state = INITIAL_SATE, action) => {
     switch (action.type) {
         case SAVE_FAVORITE:
+            console.log('in fav red', state.favorites);
+
             return {
                 ...state,
                 favorites: [...state.favorites, action.payload],
