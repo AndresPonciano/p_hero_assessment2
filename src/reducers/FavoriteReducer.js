@@ -1,4 +1,4 @@
-import { SAVE_FAVORITE } from '../actions/types';
+import { SAVE_FAVORITE, DELETE_FAVORITE } from '../actions/types';
 
 const INITIAL_SATE = {
     favorites: [],
@@ -12,6 +12,14 @@ export default (state = INITIAL_SATE, action) => {
             return {
                 ...state,
                 favorites: [...state.favorites, action.payload],
+            };
+
+        case DELETE_FAVORITE:
+            return {
+                ...state,
+                favorites: state.favorites.filter(function (item) {
+                    return item !== action.payload;
+                }),
             };
 
         default:

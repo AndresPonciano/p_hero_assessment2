@@ -1,4 +1,10 @@
-import { SET_DATE, SETPREV_DATE, SETNEXT_DATE, SAVE_FAVORITE } from './types';
+import {
+    SET_DATE,
+    SETPREV_DATE,
+    SETNEXT_DATE,
+    SAVE_FAVORITE,
+    DELETE_FAVORITE,
+} from './types';
 
 export const setDate = (date) => {
     return {
@@ -24,6 +30,13 @@ export const setNextDate = (tomorrow) => {
 export const saveFavorite = (picture) => {
     return {
         type: SAVE_FAVORITE,
+        payload: picture,
+    };
+};
+
+export const deleteFavorite = (picture) => {
+    return {
+        type: DELETE_FAVORITE,
         payload: picture,
     };
 };
