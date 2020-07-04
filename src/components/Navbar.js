@@ -19,7 +19,10 @@ const Navbar = (props) => {
                 maxDate={new Date()}
                 placeholderText=" Pick a date"
             />
-            <Link className="navElement" to="#">
+            <Link className="navElement" to="/">
+                Home
+            </Link>
+            <Link className="navElement" to="/FavList">
                 Favorite Dates
             </Link>
         </nav>
