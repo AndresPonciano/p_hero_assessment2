@@ -4,6 +4,7 @@ import { setPrevDate, setNextDate } from '../actions';
 import '../styles/display.css';
 import Favorite from './Favorite';
 import { useNasapi } from '../modules/useNasapi';
+import { useHistory } from 'react-router-dom';
 
 const DisplayImage = (props) => {
     function prevDate() {
@@ -11,6 +12,8 @@ const DisplayImage = (props) => {
         yesterday.setDate(yesterday.getDate() - 1);
         props.setPrevDate(yesterday.toString());
     }
+
+    const history = useHistory();
 
     function nextDate() {
         const today = new Date();
@@ -21,6 +24,8 @@ const DisplayImage = (props) => {
         //making sure we don't fetch a date after current date
         if (today.getTime() > tomorrow.getTime()) {
             props.setNextDate(tomorrow.toString());
+        } else {
+            history.push('/404');
         }
     }
 
@@ -35,6 +40,7 @@ const DisplayImage = (props) => {
     const url = `https://api.nasa.gov/planetary/apod?api_key=${NASA_KEY}&date=${year}-${month}-${day}`;
     const picture = useNasapi(url);
 
+    console.log('pic is', picture);
     let media;
     if (picture.media_type === 'image') {
         media = <img src={picture.url} alt="nasa" />;
