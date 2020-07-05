@@ -3,7 +3,7 @@ import DisplayImage from './DisplayImage';
 import Navbar from './Navbar';
 import '../styles/App.css';
 
-function App() {
+function App(props) {
     return (
         <>
             <Navbar />

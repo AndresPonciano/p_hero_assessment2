@@ -16,17 +16,13 @@ const DisplayImage = (props) => {
         const today = new Date();
 
         const tomorrow = new Date(props.date);
-        console.log(typeof tomorrow, tomorrow);
         tomorrow.setDate(tomorrow.getDate() + 1);
-        console.log(typeof tomorrow, tomorrow);
 
         //making sure we don't fetch a date after current date
         if (today.getTime() > tomorrow.getTime()) {
             props.setNextDate(tomorrow.toString());
         }
     }
-
-    console.log('DATE IS', props.date);
 
     const tempDate = new Date(props.date);
 

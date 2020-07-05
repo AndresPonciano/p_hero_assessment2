@@ -11,10 +11,7 @@ import {
 
 const persistedState = loadFromLocalStorage();
 
-console.log('persister', persistedState);
-
 const store = createStore(reducers, persistedState);
-// const store = createStore(reducers);
 
 store.subscribe(() => saveToLocalStorage(store.getState()));
 
