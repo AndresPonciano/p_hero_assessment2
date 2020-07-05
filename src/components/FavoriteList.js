@@ -9,7 +9,7 @@ const FavoriteList = (props) => {
         return (
             <div key={pictureData.title}>
                 <img src={pictureData.url} alt="nasa apod" />
-                {/* easiest way to reuse DisplayImage was to simply change state and redirect to App */}
+                {/* simplest way to reuse DisplayImage was to simply change state and redirect to App */}
                 <h2>{pictureData.title}</h2>
                 <Link
                     to="/"

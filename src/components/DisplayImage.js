@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import { setPrevDate, setNextDate } from '../actions';
-import axios from 'axios';
 import '../styles/display.css';
 import Favorite from './Favorite';
+import { useNasapi } from '../modules/useNasapi';
 
 const DisplayImage = (props) => {
     function prevDate() {
@@ -30,21 +30,10 @@ const DisplayImage = (props) => {
     const month = (tempDate.getMonth() + 1).toString().padStart(2, '0');
     const day = tempDate.getDate().toString().padStart(2, '0');
 
-    const [picture, setPicture] = useState({});
-
     const NASA_KEY = process.env.REACT_APP_NASA_API_KEY;
 
-    useEffect(() => {
-        axios
-            .get(
-                `https://api.nasa.gov/planetary/apod?api_key=${NASA_KEY}&date=${year}-${month}-${day}`
-            )
-            .then((response) => {
-                setPicture(response.data);
-            });
-    }, [props.date]);
-
-    console.log('pic is', picture);
+    const url = `https://api.nasa.gov/planetary/apod?api_key=${NASA_KEY}&date=${year}-${month}-${day}`;
+    const picture = useNasapi(url);
 
     let media;
     if (picture.media_type === 'image') {
