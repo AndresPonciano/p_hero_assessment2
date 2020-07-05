@@ -44,7 +44,15 @@ const DisplayImage = (props) => {
             });
     }, [props.date]);
 
-    // CHECK IF JULY 1ST HAS valid picture
+    console.log('pic is', picture);
+
+    let media;
+    if (picture.media_type === 'image') {
+        media = <img src={picture.url} alt="nasa" />;
+    } else {
+        media = <iframe src={picture.url} />;
+    }
+
     return (
         <>
             <h1>{props.date}</h1>
@@ -52,13 +60,7 @@ const DisplayImage = (props) => {
                 <button className="btn-left" onClick={prevDate}>
                     prev
                 </button>
-                <img
-                    // src={
-                    //     'https://upload.wikimedia.org/wikipedia/commons/f/f9/Phoenicopterus_ruber_in_S%C3%A3o_Paulo_Zoo.jpg'
-                    // }
-                    src={picture.url}
-                    alt="nasa's of the day"
-                />
+                {media}
                 <button className="btn-right" onClick={nextDate}>
                     next
                 </button>
