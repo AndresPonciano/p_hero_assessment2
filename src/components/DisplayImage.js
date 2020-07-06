@@ -41,9 +41,9 @@ const DisplayImage = (props) => {
 
     let media;
     if (picture.media_type === 'image') {
-        media = <img src={picture.url} alt="nasa" />;
+        media = <img className="media" src={picture.url} alt="nasa" />;
     } else {
-        media = <iframe src={picture.url} />;
+        media = <iframe className="media" src={picture.url} />;
     }
 
     return (
