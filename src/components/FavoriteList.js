@@ -6,11 +6,26 @@ import { deleteFavorite, deleteAll, setDate } from '../actions';
 
 const FavoriteList = (props) => {
     function renderFavs(pictureData) {
+        let media;
+        if (pictureData.media_type === 'image') {
+            media = (
+                <img className="card-image" src={pictureData.url} alt="nasa" />
+            );
+        } else {
+            media = (
+                <iframe
+                    src={pictureData.url}
+                    height="175px"
+                    title="media"
+                    frameBorder="0"
+                />
+            );
+        }
+
         return (
-            <div key={pictureData.title}>
-                <img src={pictureData.url} alt="nasa apod" />
+            <div className="card" key={pictureData.title}>
+                {media}
                 {/* simplest way to reuse DisplayImage was to simply change state and redirect to App */}
-                <h2>{pictureData.title}</h2>
                 <Link
                     to="/"
                     onClick={function () {
@@ -24,14 +39,15 @@ const FavoriteList = (props) => {
                         );
                     }}
                 >
-                    hi
+                    <h2>{pictureData.title}</h2>
                 </Link>
+                <h3>{pictureData.date}</h3>
                 <button
                     onClick={function () {
                         props.deleteFavorite(pictureData);
                     }}
                 >
-                    delete
+                    Delete
                 </button>
             </div>
         );
@@ -40,7 +56,9 @@ const FavoriteList = (props) => {
     return (
         <>
             <Navbar />
-            <button onClick={props.deleteAll}>Delete All</button>
+            <button className="deleteAll" onClick={props.deleteAll}>
+                Delete All
+            </button>
             {props.favorites.map(renderFavs)}
         </>
     );

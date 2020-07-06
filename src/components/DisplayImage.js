@@ -43,24 +43,37 @@ const DisplayImage = (props) => {
     if (picture.media_type === 'image') {
         media = <img className="media" src={picture.url} alt="nasa" />;
     } else {
-        media = <iframe className="media" src={picture.url} />;
+        media = (
+            <iframe
+                className="media"
+                src={picture.url}
+                title="media"
+                height="650px"
+                frameBorder="0"
+                allowFullScreen
+            />
+        );
     }
 
     return (
         <>
             <h1>{props.date}</h1>
             <div className="container">
-                <button className="btn-left" onClick={prevDate}>
+                <button className="media-btn" onClick={prevDate}>
                     prev
                 </button>
                 {media}
-                <button className="btn-right" onClick={nextDate}>
+                <button className="media-btn" onClick={nextDate}>
                     next
                 </button>
             </div>
-            <Favorite picture={picture} />
-            <h2>{picture.title}</h2>
-            <p>{picture.explanation}</p>
+            <section>
+                <div className="description">
+                    <Favorite picture={picture} />
+                    <h2>{picture.title}</h2>
+                    <p>{picture.explanation}</p>
+                </div>
+            </section>
         </>
     );
 };
