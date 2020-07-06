@@ -8,11 +8,9 @@ const Favorite = (props) => {
     }
 
     return (
-        <>
-            <button className="fav-btn" onClick={saveToFavorite}>
-                Favorite
-            </button>
-        </>
+        <button className="fav-btn" onClick={saveToFavorite}>
+            Favorite
+        </button>
     );
 };
 
