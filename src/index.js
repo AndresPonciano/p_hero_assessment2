@@ -1,19 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { createStore } from 'redux';
-import reducers from './reducers';
 import Router from './components/Router';
-import {
-    saveToLocalStorage,
-    loadFromLocalStorage,
-} from './modules/localstorage';
-
-const persistedState = loadFromLocalStorage();
-
-const store = createStore(reducers, persistedState);
-
-store.subscribe(() => saveToLocalStorage(store.getState()));
+import store from './modules/localstorage';
+import './styles/index.css';
 
 ReactDOM.render(
     <Provider store={store}>

@@ -1,4 +1,7 @@
-export function saveToLocalStorage(state) {
+import reducers from '../reducers';
+import { createStore } from 'redux';
+
+function saveToLocalStorage(state) {
     try {
         const serializedState = JSON.stringify(state);
         localStorage.setItem('state', serializedState);
@@ -7,7 +10,7 @@ export function saveToLocalStorage(state) {
     }
 }
 
-export function loadFromLocalStorage() {
+function loadFromLocalStorage() {
     try {
         const serializedState = localStorage.getItem('state');
         if (serializedState === null) return undefined;
@@ -17,3 +20,11 @@ export function loadFromLocalStorage() {
         return undefined;
     }
 }
+
+const persistedState = loadFromLocalStorage();
+
+const store = createStore(reducers, persistedState);
+
+store.subscribe(() => saveToLocalStorage(store.getState()));
+
+export default store;

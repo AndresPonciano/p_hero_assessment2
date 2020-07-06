@@ -3,7 +3,6 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { connect } from 'react-redux';
 import { setDate } from '../actions';
-import '../styles/navbar.css';
 import { Link } from 'react-router-dom';
 
 const Navbar = (props) => {

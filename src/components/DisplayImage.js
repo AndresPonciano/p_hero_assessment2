@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { setPrevDate, setNextDate } from '../actions';
-import '../styles/display.css';
 import Favorite from './Favorite';
 import { useNasapi } from '../modules/useNasapi';
 import { useHistory } from 'react-router-dom';
@@ -40,7 +39,6 @@ const DisplayImage = (props) => {
     const url = `https://api.nasa.gov/planetary/apod?api_key=${NASA_KEY}&date=${year}-${month}-${day}`;
     const picture = useNasapi(url);
 
-    console.log('pic is', picture);
     let media;
     if (picture.media_type === 'image') {
         media = <img src={picture.url} alt="nasa" />;
